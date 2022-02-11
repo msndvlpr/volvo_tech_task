@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/frgCities">
+
+    <fragment
+        android:id="@+id/frgCities"
+        android:name="com.volvo.techtask.screens.forecast.CitiesFragment"
+        android:label="@string/frg_cities_label"
+        tools:layout="@layout/fragment_cities">
+
+        <action
+            android:id="@+id/action_frgCities_to_frgWeatherForecast"
+            app:destination="@id/frgWeatherForecast"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/frgWeatherForecast"
+        android:name="com.volvo.techtask.screens.forecast.WeatherForecastFragment"
+        android:label="@string/frg_weather_forecast_label"
+        tools:layout="@layout/fragment_weather_forecast">
+        <argument
+            android:name="woeId"
+            app:argType="integer"
+            />
+
+    </fragment>
+</navigation>

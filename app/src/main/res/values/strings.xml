@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Weather Forecast</string>
+    <string name="error_in_retrieving_data">Error in retrieving data</string>
+    <string name="frg_weather_forecast_label">Weather Forcast Details</string>
+    <string name="frg_cities_label">Cities List</string>
+
+</resources>
