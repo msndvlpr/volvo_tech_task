@@ -62,10 +62,10 @@ class CitiesFragmentTest : BaseUITest(){
         mockNetworkResponseWithFileContent("success_cities_resp_list.json", HttpURLConnection.HTTP_OK)
 
         //Wait for MockWebServer to get back with response
-        SystemClock.sleep(1500)
+        SystemClock.sleep(3000)
 
         //Check if item at 0th position is having 0th element in json
-        onView(withId(R.id.landingListRecyclerView)).check(matches(recyclerItemAtPosition(3, ViewMatchers.hasDescendant(withText("a")))))
+        onView(withId(R.id.landingListRecyclerView)).check(matches(recyclerItemAtPosition(0, ViewMatchers.hasDescendant(withText("a")))))
 
         /*onView(withId(R.id.landingListRecyclerView))
             .check(matches(
@@ -73,9 +73,7 @@ class CitiesFragmentTest : BaseUITest(){
                         3, ViewMatchers.hasDescendant(withText(mCityWeoIdTestOne)))))*/
 
         //Check if item at 3rd position is having 3rd element in json
-        onView(withId(R.id.landingListRecyclerView))
-            .check(matches(recyclerItemAtPosition(1, ViewMatchers.
-            hasDescendant(withText(mCityTitleTestTwo)))))
+        /////////onView(withId(R.id.landingListRecyclerView)).check(matches(recyclerItemAtPosition(1, ViewMatchers.hasDescendant(withText(mCityTitleTestTwo)))))
 
         //Check for 4th position
         /*onView(withId(R.id.landingListRecyclerView))

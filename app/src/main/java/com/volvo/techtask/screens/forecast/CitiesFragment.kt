@@ -16,7 +16,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.volvo.techtask.R
 import com.volvo.techtask.constants.IS_DEBUG_MODE
@@ -75,7 +74,7 @@ class CitiesFragment : BaseFragment() {
     }
 
     // Observers
-    private val mDataObserver = Observer<LiveDataWrapper<List<City>>> { result ->
+    private val mDataObserver = Observer<LiveDataWrapper<ArrayList<City>>> { result ->
         when (result?.responseStatus) {
             LiveDataWrapper.RESPONSESTATUS.LOADING -> {
                 // Loading data
@@ -83,7 +82,7 @@ class CitiesFragment : BaseFragment() {
             LiveDataWrapper.RESPONSESTATUS.ERROR -> {
                 // Error for http request
                 if(IS_DEBUG_MODE)
-                    logD(TAG,"LiveDataResult.Status.ERROR = ${result.response}")
+                    logE(TAG,"LiveDataResult.Status.ERROR = ${result.error}")
                 error_holder.visibility = View.VISIBLE
                 showToast("Error in getting data")
 
@@ -92,9 +91,9 @@ class CitiesFragment : BaseFragment() {
                 // Data from API
                 if(IS_DEBUG_MODE)
                     logD(TAG,"LiveDataResult.Status.SUCCESS = ${result.response}")
-                val mainItemReceived = result.response as List<City>
-                val  listItems =  mainItemReceived as ArrayList<City>
-                processData(listItems)
+                val mainItemReceived = result.response as ArrayList<City>
+                //val  listItems =  mainItemReceived as ArrayList<City>
+                processData(mainItemReceived)
             }
         }
     }

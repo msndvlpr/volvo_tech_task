@@ -23,11 +23,11 @@ class CitiesFragmentViewModel(
     private val useCase: CitiesUseCase
 ) : ViewModel(), KoinComponent
 {
-    var mAllCitiesResponse = MutableLiveData<LiveDataWrapper<List<City>>>()
+    var mAllCitiesResponse = MutableLiveData<LiveDataWrapper<ArrayList<City>>>()
     val mLoadingLiveData = MutableLiveData<Boolean>()
     private val job = SupervisorJob()
-    private val mUiScope = CoroutineScope(mainDispatcher + job)
-    private val mIoScope = CoroutineScope(ioDispatcher + job)
+    val mUiScope = CoroutineScope(mainDispatcher + job)
+    val mIoScope = CoroutineScope(ioDispatcher + job)
 
     init {
         //call reset to reset all VM data as required

@@ -31,10 +31,9 @@ abstract class BaseUITest : KoinTest {
     /**
      * Helps to read input file returns the respective data in mocked call
      */
-    fun mockNetworkResponseWithFileContent(fileName: String, responseCode: Int) = mockServer.enqueue(
-
-        MockResponse().setResponseCode(responseCode).setBody(getJson(fileName))
-    )
+    fun mockNetworkResponseWithFileContent(fileName: String, responseCode: Int) {
+        return mockServer.enqueue(MockResponse().setResponseCode(responseCode).setBody(getJson(fileName)))
+    }
 
     /**
      * Reads input file and converts to json
@@ -47,7 +46,7 @@ abstract class BaseUITest : KoinTest {
             reader.use { reader ->
                 content = reader.readText()
             }
-        return content
+        return content.trim()
     }
 
     /**
