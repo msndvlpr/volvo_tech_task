@@ -1,9 +1,9 @@
-# Project Title:
+## Project Title:
 # A simple Weather Forecast application as Volvo Company Technical Assessment
 
-# Project Description:
-# This project is an assignment as a part of Volvo Company technical assessment process. What the app
-does is to first fetch 6 locations including Gothenburg, Stockholm, Mountain View, London,
+## Project Description:
+# This project is an assignment as a part of Volvo Company technical assessment process.
+What the app does is to first fetch 6 locations including Gothenburg, Stockholm, Mountain View, London,
 New York and Berlin from the MetaWeather REST API (https://www.metaweather.com/api/) and then show
  the tomorrow's weather forecast by clicking on each item. In the second page there are some weather-
  information for the selected city including temperature, weather state with appropriate image,
@@ -29,11 +29,11 @@ following key libraries and tools:
 Bellow image show the overview of the Architecture followed in this project:
 ![ArchDiagram1](https://user-images.githubusercontent.com/39777674/71248284-78d00800-2340-11ea-9077-080e29a8c918.png)
 
-# How to Install and Run the Project:
+## How to Install and Run the Project:
 # Project is developed using Android Studio v4.1.3 and for compiling and running the project,
 Android SDK and a real mobile device or simulator is required.
 
-# Additional documentations;
+## Additional documentations;
 To get access to additional documentations and helps about the used libraries and also the web API,
 there are some links bellow:
 
