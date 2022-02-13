@@ -48,16 +48,15 @@ class CitiesUseCaseTest : BaseUTTest(){
     }
 
     @Test
-    fun test_cities_use_case_returns_expected_value()= runBlocking{
+    fun test_cities_use_case_returns_expected_value() = runBlocking{
 
-        mockNetworkResponseWithFileContent("success_resp_list.json", HttpURLConnection.HTTP_OK)
+        mockNetworkResponseWithFileContent("success_cities_resp_list.json", HttpURLConnection.HTTP_OK)
         mCitiesUseCase = CitiesUseCase()
 
         val dataReceived = mCitiesUseCase.processCitiesDataUseCase(mParam)
 
         assertNotNull(dataReceived)
         assertEquals(dataReceived.size, mCount)
-        //assertEquals(dataReceived.next, mNextValue)
     }
 
 }
