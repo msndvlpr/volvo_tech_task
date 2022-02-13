@@ -3,7 +3,7 @@ Project Title:
 
 
 Project Description:
-# This project is an assignment as a part of Volvo Company technical assessment process.
+# This project is an assignment as a part of Volvo Company technical assessment process
 What the app does is to first fetch 6 locations including Gothenburg, Stockholm, Mountain View, London,
 New York and Berlin from the MetaWeather REST API (https://www.metaweather.com/api/) and then show
  the tomorrow's weather forecast by clicking on each item. In the second page there are some weather-

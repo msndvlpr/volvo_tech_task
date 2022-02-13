@@ -13,6 +13,7 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -20,6 +21,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.koin.core.context.startKoin
 import java.lang.reflect.Type
+
 
 @RunWith(JUnit4::class)
 class CitiesActivityViewModelTest: BaseUTTest(){
@@ -35,6 +37,7 @@ class CitiesActivityViewModelTest: BaseUTTest(){
     lateinit var mUserCase: CitiesUseCase
 
     private val mParam = listOf("Gothenburg", "Stockholm", "Mountain View", "London", "New York", "Berlin")
+    private val mFirstItemTitle = "Gothenburg"
 
     @Before
     fun start(){
@@ -50,19 +53,18 @@ class CitiesActivityViewModelTest: BaseUTTest(){
 
         mCitiesFragmentViewModel = CitiesFragmentViewModel(mDispatcher, mDispatcher, mUserCase)
         val sampleResponse = getJson("success_cities_resp_list.json")
-        //val listType: Type = object : TypeToken<ArrayList<City>>() {}.type
+        val jsonObj: List<City> = Gson().fromJson(sampleResponse , Array<City>::class.java).toList()
 
-        val jsonObj= Gson().fromJson(sampleResponse, City::class.java)
-
-        //Make sure cities use case returns expected response when called
-        coEvery { mUserCase.processCitiesDataUseCase(any()).first() } returns jsonObj
+        //Make sure cities UseCase returns expected response when called
+        coEvery { mUserCase.processCitiesDataUseCase(any()) } returns jsonObj as ArrayList<City>
         mCitiesFragmentViewModel.mAllCitiesResponse.observeForever {  }
 
         mCitiesFragmentViewModel.requestCitiesActivityData(mParam)
 
         assert(mCitiesFragmentViewModel.mAllCitiesResponse.value != null)
-        assert(mCitiesFragmentViewModel.mAllCitiesResponse.value!!.responseStatus
-                == LiveDataWrapper.RESPONSESTATUS.SUCCESS)
+        assert(mCitiesFragmentViewModel.mAllCitiesResponse.value!!.responseStatus == LiveDataWrapper.RESPONSESTATUS.SUCCESS)
+
         val testResult = mCitiesFragmentViewModel.mAllCitiesResponse.value as LiveDataWrapper<ArrayList<City>>
+        Assert.assertEquals(testResult.response!!.first().title, mFirstItemTitle)
     }
 }

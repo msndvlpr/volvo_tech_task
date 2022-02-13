@@ -60,7 +60,7 @@ dependencies {
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutines_adapter"
 
     // LeakCanary
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanary"
+    //debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanary"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extension"
