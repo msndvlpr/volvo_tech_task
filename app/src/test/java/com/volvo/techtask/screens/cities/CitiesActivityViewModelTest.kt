@@ -2,6 +2,7 @@ package com.volvo.techtask.screens.cities
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.volvo.techtask.base.BaseUTTest
 import com.volvo.techtask.di.configureTestAppComponent
 import com.volvo.techtask.models.city.City
@@ -18,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.koin.core.context.startKoin
+import java.lang.reflect.Type
 
 @RunWith(JUnit4::class)
 class CitiesActivityViewModelTest: BaseUTTest(){
@@ -27,7 +29,7 @@ class CitiesActivityViewModelTest: BaseUTTest(){
 
     lateinit var mCitiesFragmentViewModel: CitiesFragmentViewModel
 
-    val mDispatcher = Dispatchers.Unconfined
+    private val mDispatcher = Dispatchers.Unconfined
 
     @MockK
     lateinit var mUserCase: CitiesUseCase
@@ -46,10 +48,11 @@ class CitiesActivityViewModelTest: BaseUTTest(){
     @Test
     fun test_cities_view_model_data_populates_expected_value(){
 
-        mCitiesFragmentViewModel = CitiesFragmentViewModel(mDispatcher,mDispatcher,mUserCase)
+        mCitiesFragmentViewModel = CitiesFragmentViewModel(mDispatcher, mDispatcher, mUserCase)
         val sampleResponse = getJson("success_cities_resp_list.json")
+        //val listType: Type = object : TypeToken<ArrayList<City>>() {}.type
 
-        var jsonObj = Gson().fromJson(sampleResponse, City:: class.java)
+        val jsonObj= Gson().fromJson(sampleResponse, City::class.java)
 
         //Make sure cities use case returns expected response when called
         coEvery { mUserCase.processCitiesDataUseCase(any()).first() } returns jsonObj

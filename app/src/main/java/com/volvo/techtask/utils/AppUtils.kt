@@ -13,4 +13,12 @@ import android.net.NetworkInfo
  */
 class AppUtils(val context: Context) {
 
+    val isRunningTestMode : Boolean by lazy {
+        try {
+            Class.forName("android.support.test.espresso.Espresso")
+            true
+        } catch (e: ClassNotFoundException) {
+            false
+        }
+    }
 }

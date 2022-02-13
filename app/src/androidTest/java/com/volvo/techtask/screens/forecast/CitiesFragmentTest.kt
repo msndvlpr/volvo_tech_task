@@ -12,6 +12,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.volvo.techtask.R
 import com.volvo.techtask.base.BaseUITest
+import com.volvo.techtask.constants.IS_TEST_MODE
 import com.volvo.techtask.di.generateTestAppComponent
 import com.volvo.techtask.helpers.recyclerItemAtPosition
 import com.volvo.techtask.screens.forecast.CitiesFragment
@@ -44,10 +45,8 @@ class CitiesFragmentTest : BaseUITest(){
     //Inject Mock Web Server created with koin
     val  mMockWebServer : MockWebServer by inject()
 
-    private val mCityTitleTestOne = "london"
-    //private val mCityWeoIdTestOne = 44418
-    private val mCityTitleTestTwo = "Stockholm"
-    //private val mCityWeoIdTestTwo = 906057
+    private val mCityTitleTestOne = "Gothenburg"
+    private val mCityTitleTestTwo = "Berlin"
 
     @Before
     fun start(){
@@ -62,23 +61,18 @@ class CitiesFragmentTest : BaseUITest(){
         mockNetworkResponseWithFileContent("success_cities_resp_list.json", HttpURLConnection.HTTP_OK)
 
         //Wait for MockWebServer to get back with response
-        SystemClock.sleep(3000)
+        SystemClock.sleep(1000)
 
         //Check if item at 0th position is having 0th element in json
-        onView(withId(R.id.landingListRecyclerView)).check(matches(recyclerItemAtPosition(0, ViewMatchers.hasDescendant(withText("a")))))
+        onView(withId(R.id.landingListRecyclerView)).check(matches(recyclerItemAtPosition(0,
+                ViewMatchers.hasDescendant(withText(mCityTitleTestOne)))))
 
-        /*onView(withId(R.id.landingListRecyclerView))
-            .check(matches(
-                    recyclerItemAtPosition(
-                        3, ViewMatchers.hasDescendant(withText(mCityWeoIdTestOne)))))*/
 
-        //Check if item at 3rd position is having 3rd element in json
-        /////////onView(withId(R.id.landingListRecyclerView)).check(matches(recyclerItemAtPosition(1, ViewMatchers.hasDescendant(withText(mCityTitleTestTwo)))))
+        //Check if item at 5th position is having 5th element in json
+        onView(withId(R.id.landingListRecyclerView)).check(matches(recyclerItemAtPosition(5,
+                ViewMatchers.hasDescendant(withText(mCityTitleTestTwo)))))
 
-        //Check for 4th position
-        /*onView(withId(R.id.landingListRecyclerView))
-            .check(matches(recyclerItemAtPosition(1, ViewMatchers.
-            hasDescendant(withText(mCityWeoIdTestTwo)))))
-*/
     }
+
+
 }

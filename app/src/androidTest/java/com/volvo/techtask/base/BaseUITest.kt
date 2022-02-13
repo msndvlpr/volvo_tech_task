@@ -1,6 +1,7 @@
 package com.volvo.techtask.base
 
 import androidx.test.platform.app.InstrumentationRegistry
+import com.volvo.techtask.constants.IS_TEST_MODE
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -26,6 +27,7 @@ abstract class BaseUITest : KoinTest {
     @Before
     open fun setUp(){
         startMockServer(true)
+        IS_TEST_MODE = true
     }
 
     /**
@@ -80,5 +82,6 @@ abstract class BaseUITest : KoinTest {
         stopMockServer()
         //Stop Koin as well
         stopKoin()
+        IS_TEST_MODE = false
     }
 }

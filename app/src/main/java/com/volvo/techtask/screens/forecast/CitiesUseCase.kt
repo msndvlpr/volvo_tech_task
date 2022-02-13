@@ -4,6 +4,7 @@
 
 package com.volvo.techtask.screens.forecast
 
+import com.volvo.techtask.constants.IS_TEST_MODE
 import com.volvo.techtask.models.city.City
 import com.volvo.techtask.repository.city.CitiesRepository
 import org.koin.core.KoinComponent
@@ -21,6 +22,10 @@ class CitiesUseCase: KoinComponent {
     suspend fun processCitiesDataUseCase(citiesName: List<String>): ArrayList<City> {
 
         var list: ArrayList<City> = ArrayList()
+        if(IS_TEST_MODE){
+            list = mCitiesRepo.getCitiesData("")
+            return list
+        }
         for(name in citiesName){
             val foundCity: City = mCitiesRepo.getCitiesData(name).first()
             list.add(foundCity)

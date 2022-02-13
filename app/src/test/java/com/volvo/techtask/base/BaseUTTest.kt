@@ -1,5 +1,6 @@
 package com.volvo.techtask.base
 
+import com.volvo.techtask.constants.IS_TEST_MODE
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -26,6 +27,7 @@ abstract class BaseUTTest : KoinTest {
     @Before
     open fun setUp(){
         startMockServer(true)
+        IS_TEST_MODE = true
     }
 
     /**
@@ -76,5 +78,6 @@ abstract class BaseUTTest : KoinTest {
         stopMockServer()
         //Stop Koin as well
         stopKoin()
+        IS_TEST_MODE = false
     }
 }

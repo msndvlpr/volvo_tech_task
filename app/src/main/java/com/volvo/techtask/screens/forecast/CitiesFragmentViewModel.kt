@@ -46,9 +46,7 @@ class CitiesFragmentViewModel(
                 mAllCitiesResponse.value = LiveDataWrapper.loading()
                 setLoadingVisibility(true)
                 try {
-                    val data = mIoScope.async {
-                        return@async useCase.processCitiesDataUseCase(param)
-                    }.await()
+                    val data = mIoScope.async { return@async useCase.processCitiesDataUseCase(param)}.await()
                     try {
                         mAllCitiesResponse.value = LiveDataWrapper.success(data)
                     } catch (e: Exception) {
